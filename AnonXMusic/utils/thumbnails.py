@@ -67,7 +67,7 @@ async def get_thumb(videoid):
         youtube = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
         image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(2))
+        background = image2.filter(filter=ImageFilter.BoxBlur(8))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(1.5)
         draw = ImageDraw.Draw(background)
@@ -88,15 +88,15 @@ async def get_thumb(videoid):
         )
         draw.line(
             [(55, 660), (1220, 660)],
-            fill="white",
-            width=5,
+            fill="Green",
+            width=10,
             joint="curve",
         )
         draw.ellipse(
             [(918, 648), (942, 672)],
-            outline="white",
-            fill="white",
-            width=15,
+            outline="black",
+            fill="black",
+            width=20,
         )
         draw.text(
             (36, 685),
