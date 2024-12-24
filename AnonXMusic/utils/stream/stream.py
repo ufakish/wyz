@@ -100,6 +100,9 @@ async def stream(
                 )
                 img = await get_thumb(vidid)
                 button = stream_markup(_, chat_id)
+                @app.on_message(filters.command(["info", "infos"]) & ~BANNED_USERS)
+                @language
+                async def ping_com(client, message: Message, _):
                 run = await app.send_photo(
                     original_chat_id,
                     photo=img,
