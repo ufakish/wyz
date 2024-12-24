@@ -184,21 +184,21 @@ async def stream(
                 "video" if video else "audio",
                 forceplay=forceplay,
             )
-    ##        img = await get_thumb(vidid)
-    ##        button = stream_markup(_, chat_id)
-    ##        run = await app.send_photo(
-    ##            original_chat_id,
-    ##            photo=img,
-    ##            caption=_["stream_1"].format(
-    ##                f"https://t.me/{app.username}?start=info_{vidid}",
-    ##                title[:23],
-    ##                duration_min,
-    ##                user_name,
-    ##            ),
-    ###            reply_markup=InlineKeyboardMarkup(button),
-    ##        )
-    ##        db[chat_id][0]["mystic"] = run
-    ##        db[chat_id][0]["markup"] = "stream"
+            img = await get_thumb(vidid)
+            button = stream_markup(_, chat_id)
+            run = await app.send_photo(
+                original_chat_id,
+                photo=img,
+                caption=_["stream_1"].format(
+                    f"https://t.me/{app.username}?start=info_{vidid}",
+                    title[:23],
+                    duration_min,
+                    user_name,
+                ),
+                reply_markup=InlineKeyboardMarkup(button),
+            )
+            db[chat_id][0]["mystic"] = run
+            db[chat_id][0]["markup"] = "stream"
     elif streamtype == "soundcloud":
         file_path = result["filepath"]
         title = result["title"]
@@ -238,17 +238,17 @@ async def stream(
                 "audio",
                 forceplay=forceplay,
             )
-        ##    button = stream_markup(_, chat_id)
-        ##    run = await app.send_photo(
-        ##        original_chat_id,
-        ##        photo=config.SOUNCLOUD_IMG_URL,
-        ##        caption=_["stream_1"].format(
-        ##            config.SUPPORT_CHAT, title[:23], duration_min, user_name
-        ##        ),
-        ##        reply_markup=InlineKeyboardMarkup(button),
-        ##    )
-        ##    db[chat_id][0]["mystic"] = run
-        ##    db[chat_id][0]["markup"] = "tg"
+            button = stream_markup(_, chat_id)
+            run = await app.send_photo(
+                original_chat_id,
+                photo=config.SOUNCLOUD_IMG_URL,
+                caption=_["stream_1"].format(
+                    config.SUPPORT_CHAT, title[:23], duration_min, user_name
+                ),
+                reply_markup=InlineKeyboardMarkup(button),
+            )
+            db[chat_id][0]["mystic"] = run
+            db[chat_id][0]["markup"] = "tg"
     elif streamtype == "telegram":
         file_path = result["path"]
         link = result["link"]
@@ -357,9 +357,8 @@ async def stream(
             run = await app.send_photo(
                 original_chat_id,
                 photo=img,
-                caption=_["stream_2"].format(
+                caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{vidid}",
-                    f"https://t.me/{app.username}?start=info_{vidid}", 
                     title[:23],
                     duration_min,
                     user_name,
