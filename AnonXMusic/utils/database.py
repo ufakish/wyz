@@ -4,7 +4,7 @@ from datetime import date
 from typing import Dict, List, Union
 
 from AnonXMusic import userbot
-from AviaxMusic.core.mongo import mongodb
+from AnonXMusic.core.mongo import mongodb
 
 authdb = mongodb.adminauth
 authuserdb = mongodb.authuser
