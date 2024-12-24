@@ -85,7 +85,7 @@ async def get_thumb(videoid):
             clear(title),
             (300, 300, 300),
             font=font,
-            fill="black", 
+          #  fill="black", 
         )
         draw.line(
             [(55, 660), (1220, 660)],
