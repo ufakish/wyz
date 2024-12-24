@@ -103,13 +103,13 @@ async def get_thumb(videoid):
             width=30,
         )
         draw.text(
-            (36, 685),
+            (36, 670),
             "00:00",
             (255, 255, 255),
             font=arial,
         )
         draw.text(
-            (1185, 685),
+            (1185, 670),
             f"{duration[:23]}",
             (255, 255, 255),
             font=arial,
