@@ -209,12 +209,11 @@ async def stream(
                     )
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "stream"
-                elif mystic.text.startswith("/skip"):
-                    # Handle skip command
-                    await Anony.stop_stream(chat_id)  # Example action, you can replace this with your custom logic
-                    await mystic.edit_text(_["skip1"])
-                img = await get_thumb(vidid)
-                button = stream_markup(_, chat_id)
+                
+                elif streamtype == "index":
+                    link = result
+                    title = "ɪɴᴅᴇx ᴏʀ ᴍ3ᴜ8 ʟɪɴᴋ"
+                    duration_min = "00:00"
     elif streamtype == "soundcloud":
         file_path = result["filepath"]
         title = result["title"]
