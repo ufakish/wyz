@@ -83,31 +83,31 @@ async def get_thumb(videoid):
         draw.text(
             (55, 580),
             clear(title),
-            (255, 255, 255),
+            (0, 0, 0), 
             font=font,
         )
         draw.line(
             [(55, 660), (1220, 660)],
             fill="green",
-            width=10,
+            width=15,
             joint="curve",
         )
         draw.ellipse(
             [(918, 648), (942, 672)],
-            outline="white",
+            outline="black",
             fill="black",
-            width=25,
+            width=30,
         )
         draw.text(
             (36, 670),
             "00:00",
-            (255, 255, 255),
+            (0, 0, 0),
             font=arial,
         )
         draw.text(
             (1185, 670),
             f"{duration[:23]}",
-            (255, 255, 255),
+            (0, 0, 0),
             font=arial,
         )
         try:
