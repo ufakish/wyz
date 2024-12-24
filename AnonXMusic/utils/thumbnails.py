@@ -83,8 +83,8 @@ async def get_thumb(videoid):
         draw.text(
             (57, 600),
             clear(title),
-            (300, 300, 300),
-            width=40, 
+            (400, 400, 400),
+          #  width=50, 
             font=font,
           #  fill="black", 
         )
