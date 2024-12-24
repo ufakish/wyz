@@ -71,21 +71,21 @@ async def get_thumb(videoid):
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(1.1)
         draw = ImageDraw.Draw(background)
-        arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 50)
-        font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 50)
-        text_color = (0, 128, 0)
+        arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 40)
+        font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 40)
+   #     text_color = (0, 128, 0)
         draw.text((1009, 8), unidecode(app.name), fill="white", font=arial)
         draw.text(
             (55, 560),
             f"{channel} | {views[:23]}",
-            fill="text_color", 
+            (0, 128, 0), 
             font=arial,
           #  width=70, 
         )
         draw.text(
             (57, 600),
             clear(title),
-            (400, 400, 400),
+            (0, 128, 0), 
            # width=50, 
             font=font,
           #  fill="black", 
