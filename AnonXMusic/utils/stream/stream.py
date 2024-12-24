@@ -186,7 +186,7 @@ async def stream(
             )
             img = await get_thumb(vidid)
             button = stream_markup(_, chat_id)
-            run = await app.send_photo(
+            run = await 
                 original_chat_id,
                 caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{vidid}",
@@ -194,9 +194,8 @@ async def stream(
                     duration_min,
                     user_name,
                 ),
-                photo=img,
                 reply_markup=InlineKeyboardMarkup(button),
-            )
+            
             db[chat_id][0]["mystic"] = run
             db[chat_id][0]["markup"] = "stream"
     elif streamtype == "soundcloud":
