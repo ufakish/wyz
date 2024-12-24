@@ -83,20 +83,21 @@ async def get_thumb(videoid):
         draw.text(
             (57, 600),
             clear(title),
-            (255, 255, 255),
+            (300, 300, 300),
             font=font,
+            fill="black", 
         )
         draw.line(
             [(55, 660), (1220, 660)],
             fill="Green",
-            width=10,
+            width=20,
             joint="curve",
         )
         draw.ellipse(
             [(918, 648), (942, 672)],
             outline="black",
             fill="black",
-            width=20,
+            width=40,
         )
         draw.text(
             (36, 685),
