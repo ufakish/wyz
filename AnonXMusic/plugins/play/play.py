@@ -93,11 +93,6 @@ async def play_commnd(
             }
 
             try:
-                await client.send_message(
-                    chat_id=message.chat.id,
-                    text="hello",
-                    reply_to_message_id=message.id
-                )
                 await stream(
                     _,
                     mystic,
@@ -141,11 +136,6 @@ async def play_commnd(
                 "dur": dur,
             }
             try:
-                await client.send_message(
-                    chat_id=message.chat.id,
-                    text="hello",
-                    reply_to_message_id=message.id
-                )
                 await stream(
                     _,
                     mystic,
@@ -492,11 +482,6 @@ async def play_music(client, CallbackQuery, _):
     video = True if mode == "v" else None
     ffplay = True if fplay == "f" else None
     try:
-        await client.send_message(
-                    chat_id=message.chat.id,
-                    text="hello",
-                    reply_to_message_id=message.id
-                )
         await stream(
             _,
             mystic,
@@ -594,11 +579,6 @@ async def play_playlists_command(client, CallbackQuery, _):
         except:
             return await mystic.edit_text(_["play_3"])
     try:
-        await client.send_message(
-                    chat_id=message.chat.id,
-                    text="hello",
-                    reply_to_message_id=message.id
-                )
         await stream(
             _,
             mystic,
