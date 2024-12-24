@@ -106,9 +106,9 @@ async def stream(
                         f"https://t.me/{app.username}?start=info_{vidid}",
                         title[:23],
                         duration_min,
-                        user_name,
-                    photo=img, 
+                        user_name, 
                     ),
+                    photo=img,
                     reply_markup=InlineKeyboardMarkup(button),
                 )
                 db[chat_id][0]["mystic"] = run
@@ -193,8 +193,8 @@ async def stream(
                     title[:23],
                     duration_min,
                     user_name,
-                photo=img,
                 ),
+                photo=img,
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
@@ -360,9 +360,9 @@ async def stream(
                     f"https://t.me/{app.username}?start=info_{vidid}",
                     title[:23],
                     duration_min,
-                    user_name,
-                photo=img,
+                    user_name, 
                 ),
+                photo=img,
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
