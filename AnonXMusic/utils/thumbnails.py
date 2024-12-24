@@ -71,7 +71,7 @@ async def get_thumb(videoid):
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(1.1)
         draw = ImageDraw.Draw(background)
-       # arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 45)
+        arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 45)
         font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 45)
         draw.text((1000, 8), unidecode(app.name), fill="white", font=arial)
     #    draw.text(
