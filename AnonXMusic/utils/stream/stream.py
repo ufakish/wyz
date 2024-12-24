@@ -192,21 +192,29 @@ async def stream(
                 "video" if video else "audio",
                 forceplay=forceplay,
             )
-            img = await get_thumb(vidid)
-            button = stream_markup(_, chat_id)
-            run = await app.send_photo(
-                original_chat_id,
-                photo=img,
-                caption=_["stream_1"].format(
-                    f"https://t.me/{app.username}?start=info_{vidid}",
-                    title[:23],
-                    duration_min,
-                    user_name,
-                ),
-                reply_markup=InlineKeyboardMarkup(button),
-            )
-            db[chat_id][0]["mystic"] = run
-            db[chat_id][0]["markup"] = "stream"
+            if mystic.text.startswith("/stream"):
+                    # Handle stream command
+                    img = await get_thumb(vidid)
+                    button = stream_markup(_, chat_id)
+                    run = await app.send_photo(
+                        original_chat_id,
+                        photo=img,
+                        caption=_["stream_1"].format(
+                            f"https://t.me/{app.username}?start=info_{vidid}",
+                            title[:23],
+                            duration_min,
+                            user_name,
+                        ),
+                        reply_markup=InlineKeyboardMarkup(button),
+                    )
+                    db[chat_id][0]["mystic"] = run
+                    db[chat_id][0]["markup"] = "stream"
+                elif mystic.text.startswith("/skip"):
+                    # Handle skip command
+                    await Anony.stop_stream(chat_id)  # Example action, you can replace this with your custom logic
+                    await mystic.edit_text(_["skip1"])
+                img = await get_thumb(vidid)
+                button = stream_markup(_, chat_id)
     elif streamtype == "soundcloud":
         file_path = result["filepath"]
         title = result["title"]
