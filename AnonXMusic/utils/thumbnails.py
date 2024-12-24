@@ -84,7 +84,7 @@ async def get_thumb(videoid):
             (57, 600),
             clear(title),
             (300, 300, 300),
-            width=25, 
+            width=40, 
             font=font,
           #  fill="black", 
         )
