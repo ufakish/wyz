@@ -136,6 +136,11 @@ async def play_commnd(
                 "dur": dur,
             }
             try:
+                await client.send_message(
+                    chat_id=message.chat.id,
+                    text="hello",
+                    reply_to_message_id=message.id
+                )
                 await stream(
                     _,
                     mystic,
