@@ -31,11 +31,11 @@ from AnonXMusic.utils.database import (
     remove_active_video_chat,
     set_loop,
 )
-from AnonXMusic.utils.exceptions import AssistantErr
-from AnonXMusic.utils.formatters import check_duration, seconds_to_min, speed_converter
-from AnonXMusic.utils.inline.play import stream_markup
-from AnonXMusic.utils.stream.autoclear import auto_clean
-from AnonXMusic.utils.thumbnails import get_thumb
+from AviaxMusic.utils.exceptions import AssistantErr
+from AviaxMusic.utils.formatters import check_duration, seconds_to_min, speed_converter
+from AviaxMusic.utils.inline.play import stream_markup
+from AviaxMusic.utils.stream.autoclear import auto_clean
+from AviaxMusic.utils.thumbnails import gen_thumb
 from strings import get_string
 
 autoend = {}
@@ -51,54 +51,54 @@ async def _clear_(chat_id):
 class Call(PyTgCalls):
     def __init__(self):
         self.userbot1 = Client(
-            name="AnonXAss1",
+            name="AviaxAss1",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING1),
         )
         self.one = PyTgCalls(
             self.userbot1,
-            cache_duration=100,
+            cache_duration=1000,
         )
         self.userbot2 = Client(
-            name="AnonXAss2",
+            name="AviaxAss2",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING2),
         )
         self.two = PyTgCalls(
             self.userbot2,
-            cache_duration=100,
+            cache_duration=1000,
         )
         self.userbot3 = Client(
-            name="AnonXAss3",
+            name="AviaxAss3",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING3),
         )
         self.three = PyTgCalls(
             self.userbot3,
-            cache_duration=100,
+            cache_duration=1000,
         )
         self.userbot4 = Client(
-            name="AnonXAss4",
+            name="AviaxAss4",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING4),
         )
         self.four = PyTgCalls(
             self.userbot4,
-            cache_duration=100,
+            cache_duration=1000,
         )
         self.userbot5 = Client(
-            name="AnonXAss5",
+            name="AviaxAss5",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING5),
         )
         self.five = PyTgCalls(
             self.userbot5,
-            cache_duration=100,
+            cache_duration=1000,
         )
 
     async def pause_stream(self, chat_id: int):
@@ -271,14 +271,14 @@ class Call(PyTgCalls):
         await assistant.change_stream(chat_id, stream)
 
     async def stream_call(self, link):
-        assistant = await group_assistant(self, config.LOGGER_ID)
+        assistant = await group_assistant(self, config.LOG_GROUP_ID)
         await assistant.join_group_call(
-            config.LOGGER_ID,
+            config.LOG_GROUP_ID,
             AudioVideoPiped(link),
             stream_type=StreamType().pulse_stream,
         )
         await asyncio.sleep(0.2)
-        await assistant.leave_group_call(config.LOGGER_ID)
+        await assistant.leave_group_call(config.LOG_GROUP_ID)
 
     async def join_call(
         self,
@@ -391,7 +391,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_6"],
                     )
-                img = await get_thumb(videoid)
+                img = await gen_thumb(videoid)
                 button = stream_markup(_, chat_id)
                 run = await app.send_photo(
                     chat_id=original_chat_id,
@@ -437,7 +437,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_6"],
                     )
-                img = await get_thumb(videoid)
+                img = await gen_thumb(videoid)
                 button = stream_markup(_, chat_id)
                 await mystic.delete()
                 run = await app.send_photo(
@@ -506,7 +506,7 @@ class Call(PyTgCalls):
                         if str(streamtype) == "audio"
                         else config.TELEGRAM_VIDEO_URL,
                         caption=_["stream_1"].format(
-                            config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
+                            config.SUPPORT_GROUP, title[:23], check[0]["dur"], user
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
@@ -518,14 +518,14 @@ class Call(PyTgCalls):
                         chat_id=original_chat_id,
                         photo=config.SOUNCLOUD_IMG_URL,
                         caption=_["stream_1"].format(
-                            config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
+                            config.SUPPORT_GROUP, title[:23], check[0]["dur"], user
                         ),
                         reply_markup=InlineKeyboardMarkup(button),
                     )
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "tg"
                 else:
-                    img = await get_thumb(videoid)
+                    img = await gen_thumb(videoid)
                     button = stream_markup(_, chat_id)
                     run = await app.send_photo(
                         chat_id=original_chat_id,
@@ -598,4 +598,4 @@ class Call(PyTgCalls):
             await self.change_stream(client, update.chat_id)
 
 
-Anony = Call()
+AnonXMusic = Call()
