@@ -209,11 +209,8 @@ async def stream(
                     )
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "stream"
-                
-                elif streamtype == "index":
-                    link = result
-                    title = "ɪɴᴅᴇx ᴏʀ ᴍ3ᴜ8 ʟɪɴᴋ"
-                    duration_min = "00:00"
+            elif:
+                text="hyy"
     elif streamtype == "soundcloud":
         file_path = result["filepath"]
         title = result["title"]
