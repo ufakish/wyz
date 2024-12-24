@@ -1,16 +1,14 @@
 import os
 import re
-import textwrap
 
 import aiofiles
 import aiohttp
-import numpy as np
-
-from PIL import Image, ImageChops, ImageDraw, ImageEnhance, ImageFilter, ImageFont
+from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
+from unidecode import unidecode
 from youtubesearchpython.__future__ import VideosSearch
 
-from config import YOUTUBE_IMG_URL
 from AnonXMusic import app
+from config import YOUTUBE_IMG_URL
 
 
 def changeImageSize(maxWidth, maxHeight, image):
@@ -73,40 +71,32 @@ async def get_thumb(videoid):
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(1.1)
         draw = ImageDraw.Draw(background)
-        arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 40)
+       # arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 45)
         font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 45)
-   #     text_color = (0, 128, 0)
-    #    draw.text((1009, 8), unidecode(app.name), fill="white", font=arial)
+        draw.text((1000, 8), unidecode(app.name), fill="white", font=arial)
     #    draw.text(
     #        (55, 560),
     #        f"{channel} | {views[:23]}",
-    #        (0, 128, 0), 
+    #        (255, 255, 255),
     #        font=arial,
-          #  width=70, 
     #    )
         draw.text(
-            (57, 600),
+            (55, 580),
             clear(title),
-            (0, 128, 0), 
-            stroke_width=2,
-            stroke_fill="white",
-           # width=50, 
+            (255, 255, 255),
             font=font,
-          #  fill="black", 
         )
         draw.line(
             [(55, 660), (1220, 660)],
-            fill="Green",
-            width=11,
-            stroke_width=1,
-            stroke_fill="white",
+            fill="green",
+            width=10,
             joint="curve",
         )
         draw.ellipse(
-            [(942, 648), (942, 672)],
-            outline="black",
-            fill="black", 
-            width=30,
+            [(918, 648), (942, 672)],
+            outline="white",
+            fill="black",
+            width=25,
         )
         draw.text(
             (36, 670),
