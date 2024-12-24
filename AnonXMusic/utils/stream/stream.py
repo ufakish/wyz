@@ -107,7 +107,7 @@ async def stream(
                         title[:23],
                         duration_min,
                         user_name,
-                        photo=img,
+                    photo=img, 
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
@@ -193,7 +193,7 @@ async def stream(
                     title[:23],
                     duration_min,
                     user_name,
-                    photo=img,
+                photo=img,
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
@@ -356,13 +356,12 @@ async def stream(
             button = stream_markup(_, chat_id)
             run = await app.send_photo(
                 original_chat_id,
-           ##     photo=img,
                 caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{vidid}",
                     title[:23],
                     duration_min,
                     user_name,
-                    photo=img,
+                photo=img,
                 ),
                 reply_markup=InlineKeyboardMarkup(button),
             )
