@@ -76,7 +76,7 @@ async def get_thumb(videoid):
         arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 40)
         font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 45)
    #     text_color = (0, 128, 0)
-        draw.text((1009, 8), unidecode(app.name), fill="white", font=arial)
+    #    draw.text((1009, 8), unidecode(app.name), fill="white", font=arial)
     #    draw.text(
     #        (55, 560),
     #        f"{channel} | {views[:23]}",
