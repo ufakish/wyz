@@ -174,7 +174,7 @@ stream_1 : "<blockquote>▣ 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺 </blockquote>"
 stream_2 : "<blockquote>▣ 𝗧𝗲𝗹𝗲𝗴𝗿𝗮𝗺 </blockquote>"
 
 
-CLOSE_BUTTON  : "𝖢𝗅𝗈𝗌𝖾"
+CLOSE_BUTTON  : "CLEAR INFO"
 BACK_BUTTON : "𝖡𝖺𝖼𝗄"
 
 PL_B_1 : "𝗠𝗲𝗻𝘂"
