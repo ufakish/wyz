@@ -109,7 +109,6 @@ async def stream(
                         duration_min,
                         user_name,
                     ),
-                    text=_["CLOSE_BUTTON"], callback_data="close",
                     reply_markup=InlineKeyboardMarkup(button),
                 )
                 db[chat_id][0]["mystic"] = run
@@ -195,8 +194,7 @@ async def stream(
                     title[:23],
                     duration_min,
                     user_name,
-                ),
-                text=_["CLOSE_BUTTON"], callback_data="close",
+                )
                 reply_markup=InlineKeyboardMarkup(button),
             )
             db[chat_id][0]["mystic"] = run
