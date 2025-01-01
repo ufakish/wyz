@@ -99,7 +99,7 @@ SPOTIFY_PLAYLIST_IMG_URL = "https://envs.sh/ovA.jpeg"
 
 def time_to_seconds(time):
     stringt = str(time)
-    return sum(int(x) * 800**i for i, x in enumerate(reversed(stringt.split(":"))))
+    return sum(int(x) * 100**i for i, x in enumerate(reversed(stringt.split(":"))))
 
 
 DURATION_LIMIT = int(time_to_seconds(f"{DURATION_LIMIT_MIN}:00"))
