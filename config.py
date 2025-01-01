@@ -88,13 +88,13 @@ PING_IMG_URL = getenv(
 PLAYLIST_IMG_URL = "https://envs.sh/ovA.jpeg"
 STATS_IMG_URL = "https://envs.sh/o95.jpeg"
 TELEGRAM_AUDIO_URL = "https://envs.sh/o95.jpeg"
-TELEGRAM_VIDEO_URL = "https://envs.sh/o95.jpeg"
-STREAM_IMG_URL = "https://envs.sh/o95.jpeg"
+TELEGRAM_VIDEO_URL = "https://envs.sh/ovA.jpeg"
+STREAM_IMG_URL = "https://envs.sh/ovA.jpeg"
 SOUNCLOUD_IMG_URL = "https://envs.sh/o95.jpeg"
-YOUTUBE_IMG_URL = "https://envs.sh/o95.jpeg"
-SPOTIFY_ARTIST_IMG_URL = "https://envs.sh/o95.jpeg"
-SPOTIFY_ALBUM_IMG_URL = "https://envs.sh/o95.jpeg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://envs.sh/o95.jpeg"
+YOUTUBE_IMG_URL = "https://envs.sh/ovA.jpeg"
+SPOTIFY_ARTIST_IMG_URL = "https://envs.sh/ovA.jpeg"
+SPOTIFY_ALBUM_IMG_URL = "https://envs.sh/ovA.jpeg"
+SPOTIFY_PLAYLIST_IMG_URL = "https://envs.sh/ovA.jpeg"
 
 
 def time_to_seconds(time):
