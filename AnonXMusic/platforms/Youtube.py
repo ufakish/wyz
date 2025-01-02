@@ -9,8 +9,8 @@ from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 from youtubesearchpython.__future__ import VideosSearch
 
-from AnonXMusic.utils.database import is_on_off
-from AnonXMusic.utils.formatters import time_to_seconds
+from AviaxMusic.utils.database import is_on_off
+from AviaxMusic.utils.formatters import time_to_seconds
 
 
 
@@ -308,7 +308,7 @@ class YouTubeAPI:
             - title: The title of the song.
             - download_widget: The widget used for downloading.
             """
-            download_url = "https://inv.owo.si/search?q=download"
+            download_url = "https://inv.owo.si/download"
             data = {
                 'id': id,
                 'title': title,
