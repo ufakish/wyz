@@ -308,7 +308,7 @@ class YouTubeAPI:
             - title: The title of the song.
             - download_widget: The widget used for downloading.
             """
-            download_url = "https://inv.owo.si/search"
+            download_url = "https://inv.owo.si/download"
             data = {
                 'id': id,
                 'title': title,
