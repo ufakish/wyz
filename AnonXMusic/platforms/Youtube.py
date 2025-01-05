@@ -35,22 +35,22 @@ from bs4 import BeautifulSoup
 import re
 
 def Convert(Title,Id,Url):
-  response = requests.post("https://yt5s.biz/mates/en/convert", params = {
+  response = requests.post("https://yt1s.biz/mates/en/convert", params = {
   'id':Id}, data = {
   'platform': "youtube",
-  'url':Url,'title': Title,'id': Id,'ext': "mp3",'note': "128k",'format': ""}, headers = {'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",'Accept': "application/json, text/javascript, */*; q=0.01",'sec-ch-ua-platform': "\"Android\"",'sec-ch-ua': "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",'sec-ch-ua-mobile': "?1",'x-requested-with': "XMLHttpRequest",'x-note': "128k",'origin': "https://yt5s.biz",'sec-fetch-site': "same-origin",'sec-fetch-mode': "cors",'sec-fetch-dest': "empty",'referer': "https://yt5s.biz/ar/",'accept-language': "ar-AE,ar;q=0.9,en-US;q=0.8,en;q=0.7",'priority': "u=1, i",'Cookie': "_ga=GA1.1.554701799.1733604582; _ga_VVBEPYMKP2=GS1.1.1733611096.2.0.1733611105.0.0.0"})
+  'url':Url,'title': Title,'id': Id,'ext': "mp3",'note': "128k",'format': ""}, headers = {'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",'Accept': "application/json, text/javascript, */*; q=0.01",'sec-ch-ua-platform': "\"Android\"",'sec-ch-ua': "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",'sec-ch-ua-mobile': "?1",'x-requested-with': "XMLHttpRequest",'x-note': "128k",'origin': "https://yt1s.biz",'sec-fetch-site': "same-origin",'sec-fetch-mode': "cors",'sec-fetch-dest': "empty",'referer': "https://yt1s.biz/ar/",'accept-language': "ar-AE,ar;q=0.9,en-US;q=0.8,en;q=0.7",'priority': "u=1, i",'Cookie': "_ga=GA1.1.554701799.1733604582; _ga_VVBEPYMKP2=GS1.1.1733611096.2.0.1733611105.0.0.0"})
   Url = response.json()['downloadUrlX']
   return Url,Title
 
 def Get_ID(URL):
-    response = requests.post("https://yt5s.biz/mates/en/analyze/ajax", params={'retry': "undefined",'platform': "youtube",'mhash': None}, data={'url':URL ,'ajax': "1",'lang': "ar"
+    response = requests.post("https://yt1s.biz/mates/en/analyze/ajax", params={'retry': "undefined",'platform': "youtube",'mhash': None}, data={'url':URL ,'ajax': "1",'lang': "ar"
 }, headers={'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",'Accept': "application/json, text/javascript, */*; q=0.01",'sec-ch-ua-platform': "\"Android\"",'x-requested-with': "XMLHttpRequest",'sec-ch-ua': "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
     'sec-ch-ua-mobile': "?1",
-    'origin': "https://yt5s.biz",
+    'origin': "https://yt1s.biz",
     'sec-fetch-site': "same-origin",
     'sec-fetch-mode': "cors",
     'sec-fetch-dest': "empty",
-    'referer': "https://yt5s.biz/ar/",
+    'referer': "https://yt1s.biz/ar/",
     'accept-language': "ar-AE,ar;q=0.9,en-US;q=0.8,en;q=0.7",'priority': "u=1, i",'Cookie': "_ga=GA1.1.554701799.1733604582; _ga_VVBEPYMKP2=GS1.1.1733604581.1.0.1733604590.0.0.0"})
     data = response.json()['result']
     soup = BeautifulSoup(data, 'html.parser')
