@@ -120,8 +120,8 @@ async def get_thumb(videoid,user_id):
             font=arial,
         )
         draw.text(
-            (1185, 685),
-            f"{duration[:23]}",
+            (550, 685),
+            f"⇆ㅤ     ◁ㅤ ❚❚ ㅤ▷        ↻﻿",
             (255, 255, 255),
             font=arial,
         )
