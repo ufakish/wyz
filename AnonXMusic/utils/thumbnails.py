@@ -70,7 +70,7 @@ async def get_thumb(videoid,user_id):
 
         
         colors = ["aquamarine", "pink", "yellow"]
-        border = random.choice(colors)
+        border = colors[0]
         youtube = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
         bg_bright = ImageEnhance.Brightness(image1)
