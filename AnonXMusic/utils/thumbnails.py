@@ -69,7 +69,7 @@ async def get_thumb(videoid,user_id):
                     await f.close()
 
         
-        colors = ["greenyellow", "pink", "yellow"]
+        colors = ["aquamarine", "pink", "yellow"]
         border = random.choice(colors)
         youtube = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
@@ -87,7 +87,7 @@ async def get_thumb(videoid,user_id):
         arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 30)
         font4=ImageFont.truetype("assets/font4.ttf",30)
-        draw.text((550, 8), unidecode(app.name), fill="greenyellow", font=font, width=50,)
+        draw.text((550, 8), unidecode(app.name), fill="aquamarine", font=font4, width=50,)
         
         draw.text(
             (55, 560),
@@ -98,13 +98,13 @@ async def get_thumb(videoid,user_id):
         draw.text(
             (57, 600),
             clear(title),
-            fill="greenyellow",
+            fill="aquamarine",
                #(255, 255, 255),
             font=font,
         )
         draw.line(
             [(55, 660), (1220, 660)],
-            fill="greenyellow",
+            fill="aquamarine",
             width=8,
             joint="curve",
         )
@@ -114,17 +114,17 @@ async def get_thumb(videoid,user_id):
             fill="black",
             width=15,
         )
+        # draw.text(
+        #     (36, 685),
+        #     "00:00",
+        #     (255, 255, 255),
+        #     font=arial,
+        # )
         draw.text(
-            (36, 685),
-            "00:00",
-            (255, 255, 255),
-            font=arial,
-        )
-        draw.text(
-            (550, 685),
-            f"⇆ㅤ     ◁ㅤ ❚❚ ㅤ▷        ↻﻿",
-            (255, 255, 255),
-            font=arial,
+            (430, 675),
+            f"⇆ㅤ     ◁ㅤ   ❚❚ ㅤ  ▷        ↻﻿",
+            fill="aquamarine",
+            font=font4,
         )
     
         try:
