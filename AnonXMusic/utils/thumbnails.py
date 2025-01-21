@@ -1,9 +1,13 @@
 import os
 import re
+import random
 
 import aiofiles
 import aiohttp
-from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
+
+from PIL import Image, ImageDraw, ImageEnhance
+from PIL import ImageFilter, ImageFont, ImageOps
+
 from unidecode import unidecode
 from youtubesearchpython.__future__ import VideosSearch
 
@@ -29,7 +33,7 @@ def clear(text):
     return title.strip()
 
 
-async def get_thumb(videoid):
+async def get_thumb(videoid,user_id):
     if os.path.isfile(f"cache/{videoid}.png"):
         return f"cache/{videoid}.png"
 
@@ -64,53 +68,64 @@ async def get_thumb(videoid):
                     await f.write(await resp.read())
                     await f.close()
 
+        
+        colors = ["greenyellow", "pink", "yellow"]
+        border = random.choice(colors)
         youtube = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
-        image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(0))
-        enhancer = ImageEnhance.Brightness(background)
-        background = enhancer.enhance(1.1)
+        bg_bright = ImageEnhance.Brightness(image1)
+        bg_logo = bg_bright.enhance(1.1)
+        bg_contra = ImageEnhance.Contrast(bg_logo)
+        bg_logo = bg_contra.enhance(1.1)
+        logox = ImageOps.expand(bg_logo, border=12, fill=f"{border}")
+        background = changeImageSize(1280, 720, logox)
+        #image2 = image1.convert("RGBA")
+        #background = image2.filter(filter=ImageFilter.BoxBlur(0))
+        #enhancer = ImageEnhance.Brightness(background)
+        #background = enhancer.enhance(1.1)
         draw = ImageDraw.Draw(background)
-        arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 49)
-        font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 48)
-        draw.text((480, 8), unidecode(app.name), fill="#ffffff", font=font)
-    #    draw.text(
-    #        (55, 560),
-    #        f"{channel} | {views[:23]}",
-    #        (255, 255, 255),
-    #        font=arial,
-    #    )
+        arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
+        font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 30)
+        draw.text((550, 8), unidecode(app.name), fill="greenyellow", font=font, width=50,)
+        
         draw.text(
-            (40, 570),
+            (55, 560),
+            f"{channel} | {views[:23]}",
+            (255, 255, 255),
+            font=arial,
+        )
+        draw.text(
+            (57, 600),
             clear(title),
-            fill="#ffffff", 
-           # (255, 255, 255), 
+            fill="greenyellow",
+               #(255, 255, 255),
             font=font,
         )
         draw.line(
             [(55, 660), (1220, 660)],
-            fill="#c20017",
-            width=15,
+            fill="greenyellow",
+            width=8,
             joint="curve",
         )
         draw.ellipse(
             [(918, 648), (942, 672)],
-            outline="white",
-            fill="white",
-            width=30,
+            outline="black",
+            fill="black",
+            width=15,
         )
         draw.text(
-            (36, 670),
+            (36, 685),
             "00:00",
             (255, 255, 255),
             font=arial,
         )
         draw.text(
-            (1185, 670),
+            (1185, 685),
             f"{duration[:23]}",
             (255, 255, 255),
             font=arial,
         )
+    
         try:
             os.remove(f"cache/thumb{videoid}.png")
         except:
