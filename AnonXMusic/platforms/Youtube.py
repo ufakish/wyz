@@ -3,7 +3,7 @@ import os
 import re
 import json
 from typing import Union
-
+import requests
 import yt_dlp
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
@@ -30,154 +30,7 @@ def cookie_txt_file():
         file.write(f'Choosen File : {cookie_txt_file}\n')
     return f"""cookies/{str(cookie_txt_file).split("/")[-1]}"""
 
-import requests
-from bs4 import BeautifulSoup
-import re
 
-def Convert(Title,Id,Url):
-  response = requests.post("https://yt1s.biz/mates/en/convert", params = {
-  'id':Id}, data = {
-  'platform': "youtube",
-  'url':Url,'title': Title,'id': Id,'ext': "mp3",'note': "128k",'format': ""}, headers = {'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",'Accept': "application/json, text/javascript, */*; q=0.01",'sec-ch-ua-platform': "\"Android\"",'sec-ch-ua': "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",'sec-ch-ua-mobile': "?1",'x-requested-with': "XMLHttpRequest",'x-note': "128k",'origin': "https://yt1s.biz",'sec-fetch-site': "same-origin",'sec-fetch-mode': "cors",'sec-fetch-dest': "empty",'referer': "https://yt1s.biz/ar/",'accept-language': "ar-AE,ar;q=0.9,en-US;q=0.8,en;q=0.7",'priority': "u=1, i",'Cookie': "_ga=GA1.1.554701799.1733604582; _ga_VVBEPYMKP2=GS1.1.1733611096.2.0.1733611105.0.0.0"})
-  Url = response.json()['downloadUrlX']
-  return Url,Title
-
-def Get_ID(URL):
-    response = requests.post("https://yt1s.biz/mates/en/analyze/ajax", params={'retry': "undefined",'platform': "youtube",'mhash': None}, data={'url':URL ,'ajax': "1",'lang': "ar"
-}, headers={'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36",'Accept': "application/json, text/javascript, */*; q=0.01",'sec-ch-ua-platform': "\"Android\"",'x-requested-with': "XMLHttpRequest",'sec-ch-ua': "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"",
-    'sec-ch-ua-mobile': "?1",
-    'origin': "https://yt1s.biz",
-    'sec-fetch-site': "same-origin",
-    'sec-fetch-mode': "cors",
-    'sec-fetch-dest': "empty",
-    'referer': "https://yt1s.biz/ar/",
-    'accept-language': "ar-AE,ar;q=0.9,en-US;q=0.8,en;q=0.7",'priority': "u=1, i",'Cookie': "_ga=GA1.1.554701799.1733604582; _ga_VVBEPYMKP2=GS1.1.1733604581.1.0.1733604590.0.0.0"})
-    data = response.json()['result']
-    soup = BeautifulSoup(data, 'html.parser')
-    button = soup.find('button', class_='btn-success')
-
-    if button:
-        onclick_value = button['onclick']
-        matches = re.findall(r"'(.*?)'", onclick_value)
-        if len(matches) >= 2:
-            stereo_love = matches[1]
-            another_value = matches[2]
-            Title = stereo_love
-            Id_Video =another_value
-            return Convert(Title,Id_Video,URL)
- 
-def get_res(video_id):
-    
-    headers = {
-    'accept': 'application/json, text/javascript, */*; q=0.01',
-    'accept-language': 'ar,en-GB;q=0.9,en;q=0.8,zh-CN;q=0.7,zh;q=0.6,en-US;q=0.5',
-    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'origin': 'https://yt1d.com',
-    'priority': 'u=1, i',
-    'referer': 'https://yt1d.com/en11/',
-    'sec-ch-ua': '"Chromium";v="130", "Google Chrome";v="130", "Not?A_Brand";v="99"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
-    'x-requested-with': 'XMLHttpRequest',
-    }  
-      
-    # البيانات
-    data = {
-        'url': f'https://youtu.be/watch?v={video_id}',
-        'ajax': '1',
-        'lang': 'en',
-    }
-
-    # الطلب
-
-    response = requests.post('https://yt1d.com/mates/en/analyze/ajax', headers=headers, data=data)
-
-    # تحليل الرد JSON
-    response_json = response.json()
-    html_content = response_json.get('result', '')
-    # print(html_content)
-
-    # استخدام BeautifulSoup لتحليل الكود HTML المستخرج
-    soup = BeautifulSoup(html_content, 'html.parser')
-
-    # البحث عن الأزرار باستخدام الصنف المحدد
-    tables = soup.find('table', class_='table table-bordered table-hover table-responsive-sm')
-    # print(tables.td)
-
-    # استخراج قيم onclick وتحويلها إلى قاموس باستخدام التعبيرات العادية
-    downloads = []
-    
-    resolutions = set()  # استخدام مجموعة للتأكد من الفريدات
-    
-    if tables:
-        td_elements = tables.find_all('td')
-        for td in td_elements:
-            text = td.get_text(strip=True)
-            if 'p60' in text or '360p' in text or '(.mp4)' in text:
-                resolutions.add(text)
-    
-    # تحويل المجموعة إلى قائمة مع عرض النتائج
-    data = [{'resolution': res} for res in resolutions]
-    
-    return data
-
-def send_request(video_id,res):
-    
-    headers = {
-        'accept': 'application/json, text/javascript, */*; q=0.01',
-        'accept-language': 'ar,en-GB;q=0.9,en;q=0.8,zh-CN;q=0.7,zh;q=0.6,en-US;q=0.5',
-        'origin': 'https://loader.to',
-        'priority': 'u=1, i',
-        'referer': 'https://loader.to/',
-        'sec-ch-ua': '"Chromium";v="130", "Google Chrome";v="130", "Not?A_Brand";v="99"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'cross-site',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
-    }
-
-    params = {
-        'start': '1',
-        'end': '1',
-        'format': res,
-        'url': f'https://www.youtube.com/watch?v={video_id}',
-    }
-
-    response = requests.get('https://ab.cococococ.com/ajax/download.php', params=params, headers=headers)
-    return response.json()
-
-def get_progress(id):
-
-    headers = {
-        'accept': 'application/json, text/javascript, */*; q=0.01',
-        'accept-language': 'ar,en-GB;q=0.9,en;q=0.8,zh-CN;q=0.7,zh;q=0.6,en-US;q=0.5',
-        'origin': 'https://loader.to',
-        'priority': 'u=1, i',
-        'referer': 'https://loader.to/',
-        'sec-ch-ua': '"Chromium";v="130", "Google Chrome";v="130", "Not?A_Brand";v="99"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'cross-site',
-        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
-    }
-
-    params = {
-        'id': id,
-    }
-
-    response = requests.get('https://p.oceansaver.in/ajax/progress.php', params=params, headers=headers)
-    return response.json()
-def get_bytes(url):
-    bytees = requests.get(url).content
-    return bytees
 
 async def check_file_size(link):
     async def get_format_info(link):
@@ -440,32 +293,57 @@ class YouTubeAPI:
         format_id: Union[bool, str] = None,
         title: Union[bool, str] = None,
     ) -> str:
+        vid_id = link
+        sp_title = await self.title(link , videoid)
         if videoid:
             link = self.base + link
         loop = asyncio.get_running_loop()
+
+        def download_song(id, title, download_widget, fpath):
+            """
+            Downloads a song from the specified URL using the provided parameters.
+
+            Parameters:
+            - id: The ID of the song.
+            - title: The title of the song.
+            - download_widget: The widget used for downloading.
+            """
+            download_url = "https://invidious.ducks.party/download"
+            data = {
+                'id': id,
+                'title': title,
+                'download_widget': download_widget
+            }
+
+            response = requests.post(download_url, data=data)
+            file_size =int(response.headers.get('Content-Length')) / (1024 * 1024)
+            if file_size > 100:
+                return None
+
+            if response.status_code == 200:
+                with open(fpath, "wb") as f:
+                    f.write(response.content)
+                return fpath
+            else:
+                return None
+
         def audio_dl():
-            try:
-                Link ,Title = Get_ID(link)
-                if os.path.exists(f"downloads/{Title}.mp3") == True:
-                    return f"downloads/{Title}.mp3"
-                Do = requests.get(Link)
-                with open(f"downloads/{Title}.mp3",'wb') as D:
-                    D.write(Do.content)
-                return  f"downloads/{Title}.mp3"                                       
-            except Exception as e:
-                print(e)
-                Id = send_request(link.split('v=')[1],"mp3")['id']
-                
-                while True:
-                    progress = get_progress(Id)
-                    print(progress)
-                    if progress['text'] == 'Finished': 
-                        Do = requests.get(progress['download_url'],)
-                        
-                        break
-                with open(f"downloads/{Id}.mp3",'wb') as D:
-                    D.write(Do.content)
-                return  f"downloads/{Id}.mp3"
+            ydl_optssx = {
+                "format": "bestaudio/best",
+                "outtmpl": "downloads/%(id)s.%(ext)s",
+                "geo_bypass": True,
+                "nocheckcertificate": True,
+                "quiet": True,
+                "cookiefile" : cookie_txt_file(),
+                "no_warnings": True,
+            }
+            x = yt_dlp.YoutubeDL(ydl_optssx)
+            info = x.extract_info(link, False)
+            xyz = os.path.join("downloads", f"{info['id']}.{info['ext']}")
+            if os.path.exists(xyz):
+                return xyz
+            x.download([link])
+            return xyz
 
         def video_dl():
             ydl_optssx = {
@@ -524,6 +402,19 @@ class YouTubeAPI:
             x = yt_dlp.YoutubeDL(ydl_optssx)
             x.download([link])
 
+        def sp_audio_dl():
+            fpath = f"downloads/{vid_id}.mp3"
+            if os.path.exists(fpath):
+                return fpath
+            return download_song(vid_id ,sp_title,'{"itag":251,"ext":"webm"}' , fpath)
+        
+        def sp_video_dl():
+            fpath = f"downloads/{vid_id}.mp4"
+            if os.path.exists(fpath):
+                return fpath
+            return download_song(vid_id ,sp_title,'{"itag":18,"ext":"mp4"}' , fpath)
+
+
         if songvideo:
             await loop.run_in_executor(None, song_video_dl)
             fpath = f"downloads/{title}.mp4"
@@ -533,35 +424,37 @@ class YouTubeAPI:
             fpath = f"downloads/{title}.mp3"
             return fpath
         elif video:
-            if await is_on_off(1):
-                direct = True
-                downloaded_file = await loop.run_in_executor(None, video_dl)
-            else:
-                proc = await asyncio.create_subprocess_exec(
-                    "yt-dlp",
-                    "--cookies",cookie_txt_file(),
-                    "-g",
-                    "-f",
-                    "best[height<=?720][width<=?1280]",
-                    f"{link}",
-                    stdout=asyncio.subprocess.PIPE,
-                    stderr=asyncio.subprocess.PIPE,
-                )
-                stdout, stderr = await proc.communicate()
-                if stdout:
-                    downloaded_file = stdout.decode().split("\n")[0]
-                    direct = False
-                else:
-                   file_size = await check_file_size(link)
-                   if not file_size:
-                     print("None file Size")
-                     return
-                   total_size_mb = file_size / (1024 * 1024)
-                   if total_size_mb > 250:
-                     print(f"File size {total_size_mb:.2f} MB exceeds the 100MB limit.")
-                     return None
-                   direct = True
-                   downloaded_file = await loop.run_in_executor(None, video_dl)
+            direct = True
+            downloaded_file = await loop.run_in_executor(None, video_dl)
+            # if await is_on_off(1):
+            #     direct = True
+            #     downloaded_file = await loop.run_in_executor(None, sp_video_dl)
+            # else:
+            #     sp_link = f"https://inv.owo.si/latest_version?id={vid_id}&itag=18"
+            #     proc = await asyncio.create_subprocess_exec(
+            #         "yt-dlp",
+            #         "-g",
+            #         "-f",
+            #         "best[height<=?720][width<=?1280]",
+            #         f"{sp_link}",
+            #         stdout=asyncio.subprocess.PIPE,
+            #         stderr=asyncio.subprocess.PIPE,
+            #     )
+            #     stdout, stderr = await proc.communicate()
+            #     if stdout:
+            #         downloaded_file = stdout.decode().split("\n")[0]
+            #         direct = False
+            #     else:
+            #        file_size = await check_file_size(link)
+            #        if not file_size:
+            #          print("None file Size")
+            #          return
+            #        total_size_mb = file_size / (1024 * 1024)
+            #        if total_size_mb > 250:
+            #          print(f"File size {total_size_mb:.2f} MB exceeds the 100MB limit.")
+            #          return None
+            #        direct = True
+            #        downloaded_file = await loop.run_in_executor(None, sp_video_dl)
         else:
             direct = True
             downloaded_file = await loop.run_in_executor(None, audio_dl)
