@@ -33,7 +33,7 @@ def clear(text):
     return title.strip()
 
 
-async def get_thumb(videoid,user_id):
+async def get_thumb(videoid):
     if os.path.isfile(f"cache/{videoid}.png"):
         return f"cache/{videoid}.png"
 
