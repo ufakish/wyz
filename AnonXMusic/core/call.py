@@ -38,6 +38,7 @@ from AnonXMusic.utils.formatters import check_duration, seconds_to_min, speed_co
 from AnonXMusic.utils.inline.play import stream_markup
 from AnonXMusic.utils.thumbnails import get_thumb
 from strings import get_string
+from AnonXMusic.platforms.Youtube import cookie_txt_file
 
 autoend = {}
 counter = {}
@@ -249,7 +250,7 @@ class Call(PyTgCalls):
                 video_parameters=VideoQuality.SD_480p,
             )
         else:
-            stream = MediaStream(link, audio_parameters=AudioQuality.HIGH,video_flags=MediaStream.Flags.IGNORE)
+            stream = MediaStream(link, audio_parameters=AudioQuality.HIGH,video_flags=MediaStream.Flags.IGNORE, ytdlp_parameters=f"--cookies {cookie_txt_file()}")
         await assistant.play(
             chat_id,
             stream,
@@ -299,11 +300,6 @@ class Call(PyTgCalls):
                 link,
                 audio_parameters=AudioQuality.HIGH,video_parameters=VideoQuality.SD_480p
                 )
-            # stream = AudioVideoPiped(
-            #     link,
-            #     audio_parameters=HighQualityAudio(),
-            #     video_parameters=MediumQualityVideo(),
-            # )
         else:
             stream = (
                 MediaStream(
@@ -313,18 +309,13 @@ class Call(PyTgCalls):
                     
                 )
                 if video
-                else MediaStream(link, audio_parameters=AudioQuality.HIGH,video_flags=MediaStream.Flags.IGNORE)
+                else MediaStream(link, audio_parameters=AudioQuality.HIGH,video_flags=MediaStream.Flags.IGNORE, ytdlp_parameters=f"--cookies {cookie_txt_file()}")
             )
         try:
             await assistant.play(
                 chat_id,
                 stream
             )
-            # await assistant.join_group_call(
-            #     chat_id,
-            #     stream,
-            #     stream_type=StreamType().pulse_stream,
-            # )
         except NoActiveGroupCall:
             raise AssistantErr(_["call_8"])
         except AlreadyJoinedError:
@@ -398,6 +389,7 @@ class Call(PyTgCalls):
                     stream = MediaStream(
                         link,
                         audio_parameters=AudioQuality.HIGH,
+                        ytdlp_parameters=f"--cookies {cookie_txt_file()}"
                     )
                 try:
                     await client.play(chat_id, stream)
@@ -444,6 +436,7 @@ class Call(PyTgCalls):
                     stream = MediaStream(
                         file_path,
                         audio_parameters=AudioQuality.HIGH,
+                        ytdlp_parameters=f"--cookies {cookie_txt_file()}"
                     )
                 try:
                     await client.play(chat_id, stream)
@@ -476,7 +469,7 @@ class Call(PyTgCalls):
                         video_parameters=VideoQuality.SD_480p,
                     )
                     if str(streamtype) == "video"
-                    else MediaStream(videoid, audio_parameters=AudioQuality.HIGH)
+                    else MediaStream(videoid, audio_parameters=AudioQuality.HIGH, ytdlp_parameters=f"--cookies {cookie_txt_file()}")
                 )
                 try:
                     await client.play(chat_id, stream)
@@ -505,6 +498,7 @@ class Call(PyTgCalls):
                     stream = MediaStream(
                         queued,
                         audio_parameters=AudioQuality.HIGH,
+                        ytdlp_parameters=f"--cookies {cookie_txt_file()}"
                     )
                 try:
                     await client.play(chat_id, stream)
