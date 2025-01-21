@@ -69,21 +69,21 @@ async def get_thumb(videoid):
                     await f.close()
 
         
-        colors = ["white", "red", "orange", "yellow", "green", "cyan", "azure", "blue", "violet", "magenta", "pink"]
-        border = random.choice(colors)
+        colors = ["aqua", "pink", "yellow"]
+        border = colors[0]
         youtube = Image.open(f"cache/thumb{videoid}.png")
         image1 = changeImageSize(1280, 720, youtube)
         bg_bright = ImageEnhance.Brightness(image1)
         bg_logo = bg_bright.enhance(1.1)
         bg_contra = ImageEnhance.Contrast(bg_logo)
         bg_logo = bg_contra.enhance(1.1)
-        logox = ImageOps.expand(bg_logo, border=7, fill=f"{border}")
+        logox = ImageOps.expand(bg_logo, border=12, fill=f"{border}")
         background = changeImageSize(1280, 720, logox)
         draw = ImageDraw.Draw(background)
         arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 30)
         font4=ImageFont.truetype("AnonXMusic/assets/font4.ttf",30)
-        draw.text((550, 8), unidecode(app.name), fill="aquamarine", font=font4, width=50,)
+        draw.text((550, 8), unidecode(app.name), fill="aqua", font=font4, width=50,)
         
         draw.text(
             (55, 560),
@@ -94,13 +94,13 @@ async def get_thumb(videoid):
         draw.text(
             (57, 600),
             clear(title),
-            fill="aquamarine",
+            fill="aqua",
                #(255, 255, 255),
             font=font,
         )
         draw.line(
             [(55, 660), (1220, 660)],
-            fill="aquamarine",
+            fill="aqua",
             width=8,
             joint="curve",
         )
@@ -119,7 +119,7 @@ async def get_thumb(videoid):
         draw.text(
             (430, 675),
             f"↻        ◁      II       ▷        ↺",
-            fill="aquamarine",
+            fill="aqua",
             font=font4,
         )
         try:
