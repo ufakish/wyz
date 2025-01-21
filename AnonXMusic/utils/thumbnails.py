@@ -118,7 +118,7 @@ async def get_thumb(videoid):
         # )
         draw.text(
             (430, 675),
-            f"⇆ㅤ     ◁ㅤ   ❚❚ ㅤ  ▷        ↻﻿",
+            f"↻        ◁      II       ▷        ↺",
             fill="aquamarine",
             font=font4,
         )
