@@ -27,5 +27,8 @@ def private_panel(_):
                 url=f"https://t.me/{app.username}?startgroup=true",
             )
         ],
+        [
+            InlineKeyboardButton(text=_["ST_B_3"], callback_data="LG"),
+        ],
     ]
     return buttons
