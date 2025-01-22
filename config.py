@@ -32,7 +32,7 @@ HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/ufakish/amz",
+    "https://github.com/ufakish/wyz",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "master")
 GIT_TOKEN = getenv(
@@ -80,21 +80,21 @@ confirmer = {}
 
 
 START_IMG_URL = getenv(
-    "START_IMG_URL", "https://envs.sh/gBW.jpeg"
+    "START_IMG_URL", " https://envs.sh/gAT.jpg"
 )
 PING_IMG_URL = getenv(
-    "PING_IMG_URL", "https://envs.sh/gBW.jpeg"
+    "PING_IMG_URL", " https://envs.sh/gAT.jpg"
 )
-PLAYLIST_IMG_URL = "https://envs.sh/gBW.jpeg"
-STATS_IMG_URL = "https://envs.sh/gBW.jpeg"
-TELEGRAM_AUDIO_URL = "https://envs.sh/gBW.jpeg"
-TELEGRAM_VIDEO_URL = "https://envs.sh/gBW.jpeg"
-STREAM_IMG_URL = "https://envs.sh/gBW.jpeg"
-SOUNCLOUD_IMG_URL = "https://envs.sh/gBW.jpeg"
-YOUTUBE_IMG_URL = "https://envs.sh/gBW.jpeg"
-SPOTIFY_ARTIST_IMG_URL = "https://envs.sh/gBW.jpeg"
+PLAYLIST_IMG_URL = " https://envs.sh/gAT.jpg"
+STATS_IMG_URL = " https://envs.sh/gAT.jpg"
+TELEGRAM_AUDIO_URL = " https://envs.sh/gAT.jpg"
+TELEGRAM_VIDEO_URL = " https://envs.sh/gAT.jpg"
+STREAM_IMG_URL = " https://envs.sh/gAT.jpg"
+SOUNCLOUD_IMG_URL = " https://envs.sh/gAT.jpg"
+YOUTUBE_IMG_URL = " https://envs.sh/gAT.jpg"
+SPOTIFY_ARTIST_IMG_URL = " https://envs.sh/gAT.jpg"
 SPOTIFY_ALBUM_IMG_URL = "https://envs.sh/ovA.jpeg"
-SPOTIFY_PLAYLIST_IMG_URL = "https://envs.sh/gBW.jpeg"
+SPOTIFY_PLAYLIST_IMG_URL = " https://envs.sh/gAT.jpg"
 
 
 def time_to_seconds(time):
