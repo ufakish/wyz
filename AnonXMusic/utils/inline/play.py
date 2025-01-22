@@ -51,7 +51,7 @@ def stream_markup_timer(_, chat_id, played, dur):
     elif 80 <= anon < 95:
         ba = "━━━━━━━━⚪─"
     else:
-        ba = "⇆ㅤ   ◁ㅤ ❚❚ ㅤ▷     ↻﻿"
+        ba = "━━━━━━━━━⚪﻿"
 ##bar of wynk---------------------------------------
     
     
@@ -66,17 +66,16 @@ def stream_markup_timer(_, chat_id, played, dur):
         [
             
             InlineKeyboardButton(text="❚❚ ", callback_data=f"ADMIN Pause|{chat_id}"),
-            InlineKeyboardButton(
-                text="𝐒𝗍ⱺ𝐩", callback_data=f"ADMIN Stop|{chat_id}"
+            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"), 
             ),
             InlineKeyboardButton(
                 text="|►►", callback_data=f"ADMIN Skip|{chat_id}"
             ),
         ],
         
-        [
-            InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"), 
-        ],
+        # [
+        #     InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"), 
+        # ],
     ]
     return buttons
 
