@@ -15,7 +15,7 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin git vim curl  -y
 
 docker build -t wyz .
-docker container rm wyz  -f > /dev/nul
+docker container rm wyz  -f > /dev/null
 sleep 3
 docker run -d --restart=unless-stopped --name wyz wyz
 
